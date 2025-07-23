@@ -1,0 +1,5 @@
+.f{
+    background-color: beige;
+    display: flex;
+    flex-direction: column;
+}
