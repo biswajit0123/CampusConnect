@@ -1,10 +1,16 @@
 const express = require('express');
 const app = express();
+const dotenv = require('dotenv').config();
+const main = require('./db.js')
+const userRoute = require('./router/user.route.js');
 
-app.get('/', (req, res) => {
-    res.send('Hello from Express!');
-});
+const port = process.env.PORT || 5000;
 
-app.listen(3000, () => {
+//database connection
+main();
+app.use(express.json())
+app.use('/auth',userRoute);
+
+app.listen(port, () => {
     console.log("Server is listening at http://localhost:3000");
 });
