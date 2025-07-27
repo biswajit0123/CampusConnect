@@ -5,8 +5,8 @@ const router = express.Router();
 
 const {register, login, logout } = require('../controller/user.controller.js')
 
-router.get('/register',register)
-router.get('/login',login)
+router.post('/register',register)
+router.post('/login',login)
 router.get('/logout',logout)
 
 
