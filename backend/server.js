@@ -6,7 +6,7 @@ const userRoute = require('./router/user.route.js');
 const cookieParser = require('cookie-parser')
 const port = process.env.PORT || 5000;
 const cors = require('cors');
-
+const postRoute = require('./router/post.route.js')
 
 //database connection
 main();
@@ -18,7 +18,7 @@ app.use(cors({
 }));
 
 app.use('/auth',userRoute);
-
+app.use('/',postRoute);
 app.get('/test', (req, res)=>{
 res.status(201).json({msg:"ok"});
 })
