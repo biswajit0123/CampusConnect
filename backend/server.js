@@ -7,6 +7,7 @@ const cookieParser = require('cookie-parser')
 const port = process.env.PORT || 5000;
 const cors = require('cors');
 const postRoute = require('./router/post.route.js')
+const commentRoute = require('./router/comment.route.js')
 
 //database connection
 main();
@@ -17,8 +18,10 @@ app.use(cors({
     credentials:true
 }));
 
-app.use('/auth',userRoute);
-app.use('/',postRoute);
+    app.use('/auth',userRoute);
+    app.use('/post',postRoute);
+    app.use('/comment', commentRoute);
+
 app.get('/test', (req, res)=>{
 res.status(201).json({msg:"ok"});
 })

@@ -3,21 +3,21 @@ const Post = require('../model/Post.model.js');
 
 const postControll = {
     async getAllPost(req, res){
-
-        // const {userId, content,} = req.body;
-        // try {
-        //     const user = await 
-        // } catch (error) {
-            
-        // }  
-     
-res.status(200).json({message:"allp post"})
+         
+        try {
+            const posts = await Post.find();
+            console.log(posts);
+            res.status(200).json({posts});
+        } catch (error) {
+            console.log("error is ", error);
+            res.status(401).json({message:"internal server error"});
+        }
     },
 
 
   async create(req, res){
     
-        const {userId, content} = req.body;
+        const {userId,title, content} = req.body;
         try {
             const user = await User.findOne({_id:userId});
             if(!user){
@@ -25,6 +25,7 @@ res.status(200).json({message:"allp post"})
             }
             
             const post = new Post({
+                 title,
                  content,
                  owner:user._id
             })

@@ -1,10 +1,10 @@
 const express = require('express')
-
+const protected = require('../middleware/protectedRoute.js')
 const router = express.Router();
 const postControll = require('../controller/post.controller.js');
 
-router.get('/', postControll.getAllPost)
-router.post('/create', postControll.create)
+router.get('/',protected, postControll.getAllPost)
+router.post('/', postControll.create)
 router.delete('/', postControll.delete)
 
 
