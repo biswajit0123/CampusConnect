@@ -1,17 +1,25 @@
-import styles from './Login.module.css'
-function Login(){
+import React from 'react'
 
-    return(
-        <>
+function Login() {
+  return (
+    <>
+    
+    <div className="container">
+      <h2>Welcome back to CampusConnect</h2>
+       <div className="formWrapper">
+           <form action="">
+            <label htmlFor="email">Email : </label>
+            <input type="text" placeholder='biswajitmuduli0544@gmail.com' />
 
-        <div className="container">
-            <h2>login</h2>
-        </div>
+             <label htmlFor="email">Password : </label>
+            <input type="password" placeholder='******' />
 
-        </>
-      
 
-    )
+           </form>
+       </div>
+    </div>
+    </>
+  )
 }
 
 export default Login
