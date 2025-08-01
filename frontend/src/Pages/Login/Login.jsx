@@ -1,52 +1,55 @@
 import React, { useState } from 'react';
 import styles from './Login.module.css';
+import { Link } from 'react-router-dom';
+
 
 const Login = () => {
-  const [activeForm, setActiveForm] = useState('login');
+ 
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-  const showForm = (formId) => {
-    setActiveForm(formId);
-  };
-  const handleLogin = (e) => {
-    e.preventDefault();
 
-    // TODO: Add actual login/auth logic here
 
-    // Redirect to homepage after login
-    navigate('/HomePage');
-  };
+
+  const handleForm = async () => {
+    console.log("clicked")
+  }
 
   return (
     <>
       
-
       <div className={styles.container}>
-        <div className={`${styles.formBox} ${activeForm === 'login' ? styles.active : ''}`} id="login-form">
-          <form>
-            <h2>Login</h2>
-            <input type="email" name="email" placeholder="Email" />
-            <input type="password" name="password" placeholder="Password" />
-            <button type="submit" name="login">Login</button>
-            <p>
-              Don't have any account?{' '}
-              <a href='/Signup' style={{ cursor: 'pointer' }}>Sign up</a>
-            </p>
-          </form>
-        </div>
-      {/* <div className={`${styles.formBox} ${activeForm === 'signup' ? styles.active : ''}`} id="signup-form">
-        <form>
-          <h2>Register</h2>
-          <input type="text" name="name" placeholder="Name" />
-          <input type="email" name="email" placeholder="Email" />
-          <input type="password" name="password" placeholder="Password" />
-          <button type="submit" name="register">Register</button>
+
+        
+         <h1>Login With Credentials</h1>
+
+         <form action="" className={styles.frm}>
+           
+           <div className={styles.feild}>
+            <label htmlFor="email">Email:</label>
+           <input 
+               type="text" 
+               placeholder='example@gmail.com'
+               value={email}
+               onChange={(e) => e.target.value}
+                
+               />
+           </div>
+
+           <div className={styles.feild}>
+              <label htmlFor="password">Password:</label>
+              <input type="text" placeholder='******'/>
+           </div>
+           
+           <button onClick={handleForm} type='button' className={styles.btn}>Login</button>
+         </form>
+
           <p>
-            Already have any account?{' '}
-            <a onClick={() => showForm('login')} style={{ cursor: 'pointer' }}>Login</a>
+            Already have any account?
+           <Link to="/signup">Sign up</Link> 
           </p>
-        </form>
-      </div> */}
-    </div>
+      </div>
+
     </>
   );
 };
