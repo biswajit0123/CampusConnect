@@ -1,3 +1,28 @@
-.container{
-    background-color: aqua;
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+  background-color: #f5f5f5;
+  border-bottom: 1px solid #ddd;
+}
+
+.logo {
+  font-size: 28px;
+  color: #007bff;
+}
+
+.head h2 {
+  margin: 0;
+}
+
+.navlink a {
+  margin-left: 20px;
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+}
+
+.navlink a:hover {
+  color: #007bff;
 }

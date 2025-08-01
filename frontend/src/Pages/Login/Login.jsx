@@ -1,25 +1,54 @@
-import React from 'react'
+import React, { useState } from 'react';
+import styles from './Login.module.css';
 
-function Login() {
+const Login = () => {
+  const [activeForm, setActiveForm] = useState('login');
+
+  const showForm = (formId) => {
+    setActiveForm(formId);
+  };
+  const handleLogin = (e) => {
+    e.preventDefault();
+
+    // TODO: Add actual login/auth logic here
+
+    // Redirect to homepage after login
+    navigate('/HomePage');
+  };
+
   return (
     <>
-    
-    <div className="container">
-      <h2>Welcome back to CampusConnect</h2>
-       <div className="formWrapper">
-           <form action="">
-            <label htmlFor="email">Email : </label>
-            <input type="text" placeholder='biswajitmuduli0544@gmail.com' />
+      
 
-             <label htmlFor="email">Password : </label>
-            <input type="password" placeholder='******' />
-
-
-           </form>
-       </div>
+      <div className={styles.container}>
+      <div className={`${styles.formBox} ${activeForm === 'login' ? styles.active : ''}`} id="login-form">
+        <form>
+          <h2>Login</h2>
+          <input type="email" name="email" placeholder="Email" />
+          <input type="password" name="password" placeholder="Password" />
+          <button type="submit" name="login">Login</button>
+          <p>
+            Don't have any account?{' '}
+            <a href='/Signup' style={{ cursor: 'pointer' }}>Sign up</a>
+          </p>
+        </form>
+      </div>
+      {/* <div className={`${styles.formBox} ${activeForm === 'signup' ? styles.active : ''}`} id="signup-form">
+        <form>
+          <h2>Register</h2>
+          <input type="text" name="name" placeholder="Name" />
+          <input type="email" name="email" placeholder="Email" />
+          <input type="password" name="password" placeholder="Password" />
+          <button type="submit" name="register">Register</button>
+          <p>
+            Already have any account?{' '}
+            <a onClick={() => showForm('login')} style={{ cursor: 'pointer' }}>Login</a>
+          </p>
+        </form>
+      </div> */}
     </div>
     </>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;

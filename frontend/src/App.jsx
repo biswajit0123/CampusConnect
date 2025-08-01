@@ -16,7 +16,17 @@ function App() {
         <div className="layout">
 
            <Routes >
-     
+           
+           <Route
+              path="/login"
+              exact
+              element={
+                <div className={styles.main}>
+                  <Login />
+                </div>
+              }
+            />
+
            <Route
               path="/"
               exact
@@ -37,7 +47,7 @@ function App() {
               }
             />
             
-             <Route
+             {/* <Route
               path="/login"
               exact
               element={
@@ -45,7 +55,7 @@ function App() {
                   <Login />
                 </div>
               }
-            />
+            /> */}
 
 
 
