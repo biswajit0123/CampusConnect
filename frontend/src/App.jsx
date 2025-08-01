@@ -27,6 +27,16 @@ function App() {
               }
             />
 
+            <Route
+              path="/signup"
+              exact
+              element={
+                <div className={styles.main}>
+                  <Signup />
+                </div>
+              }
+            />
+
            <Route
               path="/"
               exact
@@ -37,7 +47,7 @@ function App() {
               }
             />
 
-             <Route
+             {/* <Route
               path="/signup"
               exact
               element={
@@ -45,7 +55,7 @@ function App() {
                   <Signup />
                 </div>
               }
-            />
+            /> */}
             
              {/* <Route
               path="/login"

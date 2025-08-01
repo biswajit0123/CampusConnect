@@ -21,18 +21,18 @@ const Login = () => {
       
 
       <div className={styles.container}>
-      <div className={`${styles.formBox} ${activeForm === 'login' ? styles.active : ''}`} id="login-form">
-        <form>
-          <h2>Login</h2>
-          <input type="email" name="email" placeholder="Email" />
-          <input type="password" name="password" placeholder="Password" />
-          <button type="submit" name="login">Login</button>
-          <p>
-            Don't have any account?{' '}
-            <a href='/Signup' style={{ cursor: 'pointer' }}>Sign up</a>
-          </p>
-        </form>
-      </div>
+        <div className={`${styles.formBox} ${activeForm === 'login' ? styles.active : ''}`} id="login-form">
+          <form>
+            <h2>Login</h2>
+            <input type="email" name="email" placeholder="Email" />
+            <input type="password" name="password" placeholder="Password" />
+            <button type="submit" name="login">Login</button>
+            <p>
+              Don't have any account?{' '}
+              <a href='/Signup' style={{ cursor: 'pointer' }}>Sign up</a>
+            </p>
+          </form>
+        </div>
       {/* <div className={`${styles.formBox} ${activeForm === 'signup' ? styles.active : ''}`} id="signup-form">
         <form>
           <h2>Register</h2>

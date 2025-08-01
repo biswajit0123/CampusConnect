@@ -1,12 +1,12 @@
 
 
- *{
+ /* *{
           margin: 0;
           padding: 0;
           box-sizing: border-box;
           font-family: "poppins", serif;
-        }
-        body {
+        } */
+        /* body {
           display: flex;
           justify-content: center;
           align-items: center;
@@ -14,9 +14,15 @@
           background: linear-gradient(to right, rgb(7, 22, 21), rgb(2, 19, 13));
           color: #333;
           margin: 0;
-        }
+        } */
         .container {
           margin: 0 15px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          min-height: 100vh;
+          background: linear-gradient(to right, rgb(7, 22, 21), rgb(2, 19, 13));
+          color: #333;
         }
         .form-box {
           width: 100%;
