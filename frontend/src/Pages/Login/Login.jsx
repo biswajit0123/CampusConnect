@@ -31,20 +31,29 @@ const Login = () => {
                type="text" 
                placeholder='example@gmail.com'
                value={email}
-               onChange={(e) => e.target.value}
+               onChange={(e) => setEmail( e.target.value)}
                 
                />
            </div>
 
            <div className={styles.feild}>
               <label htmlFor="password">Password:</label>
-              <input type="text" placeholder='******'/>
+              <input 
+                  type="text" 
+                  placeholder='******'
+                   value={password}
+                  onChange={(e) => setPassword( e.target.value)}
+                  
+                  />
            </div>
            
-           <button onClick={handleForm} type='button' className={styles.btn}>Login</button>
+              <div className={styles.feild}>
+                       <button onClick={handleForm} type='button' className={styles.btn}>Login</button>
+
+           </div>
          </form>
 
-          <p>
+          <p >
             Already have any account?
            <Link to="/signup">Sign up</Link> 
           </p>

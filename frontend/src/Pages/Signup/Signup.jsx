@@ -1,46 +1,168 @@
 import React, { useState } from 'react';
 import styles from './Signup.module.css';
+import { Link } from 'react-router-dom';
 
-const Signup = () => {
-  const [activeForm, setActiveForm] = useState('signup');
 
-  const showForm = (formId) => {
-    setActiveForm(formId);
-  };
+const Login = () => {
+ 
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [userName, setUserName] = useState("");
+  const [fullName, setFullName] = useState("");
+  const [CollegeName, setCollegeName] = useState("");
+  const [course, setCourse] = useState("");
+  const [branch, setBranch] = useState("");
+  const [country, setCountry] = useState("");
+
+
+  const handleForm = async () => {
+    const formData = {
+      fullName,
+      userName,
+      email,
+      password,
+      CollegeName,
+      course,
+      branch,
+      country
+    }
+    console.log(formData)
+  }
 
   return (
     <>
       
-
       <div className={styles.container}>
-      {/* <div className={`${styles.formBox} ${activeForm === 'login' ? styles.active : ''}`} id="login-form">
-        <form>
-          <h2>Login</h2>
-          <input type="email" name="email" placeholder="Email" />
-          <input type="password" name="password" placeholder="Password" />
-          <button type="submit" name="login">Login</button>
-          <p>
-            Don't have any account?{' '}
-            <a onClick={() => showForm('signup')} style={{ cursor: 'pointer' }}>Sign up</a>
+
+        
+         <h1>Create A new account</h1>
+
+         <form action="" className={styles.frm}>
+           
+
+            <div className={styles.feild}>
+            <label htmlFor="fullname">Full Name::</label>
+           <input 
+               type="text" 
+               placeholder='biswajit'
+               value={fullName}
+               id='fullname'
+               onChange={(e) => setFullName( e.target.value)}
+                
+               />
+           </div>
+
+           <div className={styles.feild}>
+            <label htmlFor="username">Username:</label>
+             <input 
+               type="text" 
+               placeholder='biswajit_04_'
+               value={userName}
+               id='username'
+               onChange={(e) => setUserName( e.target.value)}
+                
+               />
+           </div>
+
+           <div className={styles.feild}>
+            <label htmlFor="email">Email:</label>
+           <input 
+               id='email'
+               type="text" 
+               placeholder='example@gmail.com'
+               value={email}
+               onChange={(e) => setEmail( e.target.value)}
+                
+               />
+           </div>
+
+           <div className={styles.feild}>
+              <label htmlFor="password">Password:</label>
+              <input 
+                   
+                  id='password'
+                  type="text" 
+                  placeholder='******'
+                  value={password}
+                  onChange={(e) => setPassword( e.target.value)}
+                  
+                  />
+           </div>
+           
+
+           <div className={styles.feild}>
+              <label htmlFor="collegename">College Name:</label>
+              <input 
+                  id='collegename'
+                  type="text" 
+                  placeholder='******'
+                  value={CollegeName}
+                  onChange={(e) => setCollegeName( e.target.value)}
+                  
+                  />
+           </div>
+
+
+           <div className={styles.feild}>
+              <label htmlFor="course">Course:</label>
+              <input 
+                  id='course'
+                  type="text" 
+                  placeholder='MCA'
+                   value={course}
+                  onChange={(e) => setCourse( e.target.value)}
+                  
+                  />
+           </div>
+
+             <div className={styles.feild}>
+              <div className={styles.inwp}>
+                <div>
+                 <label htmlFor="branch">Branch:</label>
+                   <input 
+                   id='branch'
+                  type="text" 
+                  placeholder='Computer Application'
+                   value={branch}
+                  onChange={(e) => setBranch( e.target.value)}
+                  
+                  />
+                </div>
+                 
+               <div>
+                 <label htmlFor="country">Country    :</label>
+                   <input 
+                   id='country'
+                  type="text" 
+                  placeholder='india'
+                   value={country}
+                  onChange={(e) => setCountry( e.target.value)}
+                  
+                  />
+                </div>
+       
+
+             
+
+
+              </div>
+             
+           </div>
+
+            <div className={styles.feild}>
+                       <button onClick={handleForm} type='button' className={styles.btn}>Sign up</button>
+
+           </div>
+         </form>
+
+          <p >
+            Already have any account? &nbsp;
+           <Link to="/signup">Sign up</Link> 
           </p>
-        </form>
-      </div> */}
-      <div className={`${styles.formBox} ${activeForm === 'signup' ? styles.active : ''}`} id="signup-form">
-        <form>
-          <h2>Register</h2>
-          <input type="text" name="name" placeholder="Name" />
-          <input type="email" name="email" placeholder="Email" />
-          <input type="password" name="password" placeholder="Password" />
-          <button type="submit" name="register">Register</button>
-          <p>
-            Already have any account?{' '}
-            <a href='/login' style={{ cursor: 'pointer' }}>Login</a>
-          </p>
-        </form>
       </div>
-    </div>
+
     </>
   );
 };
 
-export default Signup;
+export default Login;
