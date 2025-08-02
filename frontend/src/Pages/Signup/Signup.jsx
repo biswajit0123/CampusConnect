@@ -31,8 +31,7 @@ const Login = () => {
 
   return (
     <>
-      
-      <div className={styles.container}>
+      <div className={`${styles.container}`}>
 
         
          <h1>Create A new account</h1>
@@ -157,7 +156,7 @@ const Login = () => {
 
           <p >
             Already have any account? &nbsp;
-           <Link to="/signup">Sign up</Link> 
+           <Link to="/login">Log in</Link> 
           </p>
       </div>
 

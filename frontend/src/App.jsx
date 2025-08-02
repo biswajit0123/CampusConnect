@@ -1,83 +1,26 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import HomePage from './Pages/HomePage/HomePage.jsx';
-import styles from './App.module.css';
+import HomePage from   './Pages/HomePage/HomePage.jsx';
 import Login from "./Pages/Login/Login.jsx";
 import Signup from "./Pages/Signup/Signup.jsx";
-
+import Navbar from "./Component/Navbar/Navbar.jsx";
 
 function App() {
-  
   return (
-   
-    <>
+    <BrowserRouter>
+     
+      <Navbar />
 
-    <div className="container">
-  <BrowserRouter>
-        <div className="layout">
-
-           <Routes >
-           
-           <Route
-              path="/login"
-              exact
-              element={
-                <div className={styles.main}>
-                  <Login />
-                </div>
-              }
-            />
-           
-            <Route
-              path="/signup"
-              exact
-              element={
-                <div className={styles.main}>
-                  <Signup />
-                </div>
-              }
-            />
-
-           <Route
-              path="/"
-              exact
-              element={
-                <div className={styles.main}>
-                  <HomePage />
-                </div>
-              }
-            />
-
-             {/* <Route
-              path="/signup"
-              exact
-              element={
-                <div className={styles.main}>
-                  <Signup />
-                </div>
-              }
-            /> */}
-            
-             {/* <Route
-              path="/login"
-              exact
-              element={
-                <div className={styles.main}>
-                  <Login />
-                </div>
-              }
-            /> */}
-
-
-
-       </Routes>
+      <div className="flex flex-col min-h-screen">
+        <div className="flex-1">
+          <Routes>
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/" element={<HomePage />} />
+          </Routes>
         </div>
-      
-     </BrowserRouter>
-    </div>
-   
-      
-    </>
-  )
+      </div>
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;
