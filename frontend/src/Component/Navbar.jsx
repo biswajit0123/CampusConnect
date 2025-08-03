@@ -3,6 +3,7 @@ import { Link } from "react-router-dom"
 
 function Navbar() {
 
+  const isAuth = true;
   const [scrolled, setScrolled] = useState(false);
   const [showBox, setShowBox] = useState(false)
 
@@ -41,14 +42,17 @@ function Navbar() {
           <li><Link to="/q=popular" className="relative group">Popular  <span className={`absolute left-0 bottom-0 h-[2px] w-0  ${scrolled?'bg-white':"bg-purple-400"} transition-all duration-300 group-hover:w-full`}></span></Link></li>
           <li><Link to="/campuses" className="relative group">Campuses  <span className={`absolute left-0 bottom-0 h-[2px] w-0  ${scrolled?'bg-white':"bg-purple-400"} transition-all duration-300 group-hover:w-full`}></span></Link></li>
 
-          <li className={`transition-all duration-500 ease-in-out border ${!scrolled ? "border-purple-400" :       "border-white"} px-2 hover:rounded-xl`}>
+          {!isAuth && <li className={`transition-all duration-500 ease-in-out border ${!scrolled ? "border-purple-400" :       "border-white"} px-2 hover:rounded-xl`}>
           <Link to="/login" className="text-xs text-center">Log in</Link>
-         </li>
+         </li> }
 
-          <li className={`transition-all duration-500 ease-in-out border ${!scrolled ? "border-purple-400" : "border-white"} px-2 hover:rounded-xl`}>
+         {!isAuth && <li className={`transition-all duration-500 ease-in-out border ${!scrolled ? "border-purple-400" : "border-white"} px-2 hover:rounded-xl`}>
             <Link to="/signup" className="text-xs text-center">Sign in</Link>
-          </li>
-
+          </li>  }
+         
+         {isAuth && <li className={`transition-all duration-500 ease-in-out border ${!scrolled ? "border-purple-400" : "border-white"} px-2 hover:rounded-xl`}>
+            <Link to="/signup" className="text-xs text-center">logout</Link>
+          </li>  }
 
          </ul>
       </div>

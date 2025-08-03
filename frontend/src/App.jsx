@@ -2,9 +2,15 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomePage from   './Pages/HomePage/HomePage.jsx';
 import Login from "./Pages/Login/Login.jsx";
 import Signup from "./Pages/Signup/Signup.jsx";
-import Navbar from "./Component/Navbar/Navbar.jsx";
+import Navbar from "./Component/Navbar.jsx";
+import Protected from "./Component/Protected.jsx";
+import CreatePost from "./Pages/CreatePost.jsx";
 
 function App() {
+
+const isAuth = false;
+
+
   return (
     <BrowserRouter>
      
@@ -16,6 +22,11 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/" element={<HomePage />} />
+             <Route path="/createpost" element={
+              <Protected isAuth={isAuth}> 
+              <CreatePost />
+              </Protected>
+              } />
           </Routes>
         </div>
       </div>

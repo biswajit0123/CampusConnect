@@ -1,66 +1,81 @@
 import React, { useState } from 'react';
-import styles from './Login.module.css';
 import { Link } from 'react-router-dom';
 
-
-const Login = () => {
+const Signup = () => {
  
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-
-
+  const [userName, setUserName] = useState("");
+  const [fullName, setFullName] = useState("");
+  const [CollegeName, setCollegeName] = useState("");
+  const [course, setCourse] = useState("");
+  const [branch, setBranch] = useState("");
+  const [country, setCountry] = useState("");
 
   const handleForm = async () => {
-    console.log("clicked")
+    const formData = {
+      fullName,
+      userName,
+      email,
+      password,
+      CollegeName,
+      course,
+      branch,
+      country
+    }
+    console.log(formData)
   }
 
   return (
     <>
-      
-      <div className={styles.container}>
-
+      <div className="m-2 flex flex-col items-center justify-center ">
         
-         <h1>Login With Credentials</h1>
+         <h1 className='text-xl'>Create A new account</h1>
 
-         <form action="" className={styles.frm}>
-           
-           <div className={styles.feild}>
-            <label htmlFor="email">Email:</label>
-           <input 
-               type="text" 
-               placeholder='example@gmail.com'
-               value={email}
-               onChange={(e) => setEmail( e.target.value)}
-                
-               />
+         <form action="" className="mt-4 w-3/5 flex flex-col justify-center items-start gap-4 ">
+
+           <div className="w-full">
+              <label htmlFor="email" className='text-xs'>Email:</label>
+             <input 
+                 id='email'
+                 type="text" 
+                 placeholder='biswajitmuduli0544@gmail.com'
+                 value={email}
+                 onChange={(e) => setEmail( e.target.value)}
+                 className="p-1 w-full text-xs outline-none border"
+                 />
            </div>
 
-           <div className={styles.feild}>
-              <label htmlFor="password">Password:</label>
-              <input 
-                  type="text" 
-                  placeholder='******'
-                   value={password}
-                  onChange={(e) => setPassword( e.target.value)}
-                  
-                  />
+           <div className="w-full">
+                <label htmlFor="password" className='text-xs'>Password:</label>
+                <input 
+                     id='password'
+                    type="text" 
+                    placeholder='******'
+                    value={password}
+                    onChange={(e) => setPassword( e.target.value)}
+                    className="p-1 w-full text-xs outline-none border"
+                    />
            </div>
            
-              <div className={styles.feild}>
-                       <button onClick={handleForm} type='button' className={styles.btn}>Login</button>
+          
 
+           
+
+         
+
+            <div className="w-full">
+              <button onClick={handleForm} type='button' className="py-1 px-4 text-xs transition duration-500 ease-linear hover:bg-slate-500 bg-slate-400 rounded-2xl border-none cursor-pointer">Sign up</button>
            </div>
          </form>
 
-          <p >
-            Already have any account?
-           <Link to="/signup">Sign up</Link> 
+          <p className='text-xs'>
+           Don't have an account? &nbsp;
+           <Link to="/signup" className='group relative'>create new  <span className="absolute bg-purple-400 left-0 bottom-0 h-[2px] w-0  transition-all duration-300 group-hover:w-full"></span></Link> 
           </p>
       </div>
-
     </>
   );
 };
 
-export default Login;
+export default Signup;
