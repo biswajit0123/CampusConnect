@@ -5,23 +5,13 @@ const Signup = () => {
  
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [userName, setUserName] = useState("");
-  const [fullName, setFullName] = useState("");
-  const [CollegeName, setCollegeName] = useState("");
-  const [course, setCourse] = useState("");
-  const [branch, setBranch] = useState("");
-  const [country, setCountry] = useState("");
+
 
   const handleForm = async () => {
     const formData = {
-      fullName,
-      userName,
+     
       email,
-      password,
-      CollegeName,
-      course,
-      branch,
-      country
+      password
     }
     console.log(formData)
   }

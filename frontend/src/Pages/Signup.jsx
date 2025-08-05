@@ -19,7 +19,7 @@ const Signup = () => {
       email,
       password,
       CollegeName,
-      course,
+      course,  
       branch,
       country
     }

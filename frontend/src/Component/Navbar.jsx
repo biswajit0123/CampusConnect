@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 
 function Navbar() {
 
-  const isAuth = true;
+  const isAuth = false;
   const [scrolled, setScrolled] = useState(false);
   const [showBox, setShowBox] = useState(false)
 

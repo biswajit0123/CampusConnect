@@ -1,11 +1,10 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import HomePage from   './Pages/HomePage/HomePage.jsx';
-import Login from "./Pages/Login/Login.jsx";
-import Signup from "./Pages/Signup/Signup.jsx";
+import Login from "./Pages/Login.jsx";
+import Signup from "./Pages/Signup.jsx";
 import Navbar from "./Component/Navbar.jsx";
 import Protected from "./Component/Protected.jsx";
 import CreatePost from "./Pages/CreatePost.jsx";
-
+import HomePage from "./Pages/HomePage.jsx";
 function App() {
 
 const isAuth = false;

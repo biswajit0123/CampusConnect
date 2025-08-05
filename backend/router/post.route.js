@@ -4,7 +4,7 @@ const router = express.Router();
 const postControll = require('../controller/post.controller.js');
 
 router.get('/',protected, postControll.getAllPost)
-router.post('/', postControll.create)
+router.post('/',protected, postControll.create)
 router.delete('/:id', postControll.delete)
 
 
