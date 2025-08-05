@@ -20,7 +20,7 @@ const isAuth = false;
           <Routes>
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
-            <Route path="/" element={<HomePage />} />
+            <Route path="/profilepage" element={<Pro />} />
              <Route path="/createpost" element={
               <Protected isAuth={isAuth}> 
               <CreatePost />

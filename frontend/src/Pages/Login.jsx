@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import heroImage from './imgback.avif';
 
 const Signup = () => {
  
@@ -18,8 +19,12 @@ const Signup = () => {
 
   return (
     <>
-      <div className="m-2 flex flex-col items-center justify-center ">
+      <div>
         
+        <div className="h-screen flex items-center justify-center  " style={{ backgroundImage: `url(${heroImage})` }}>
+           
+        <div className="m-2 w-80 flex flex-col items-center justify-center border rounded-lg backdrop-blur " style={{ backgroundImage: `url(${heroImage})` }}>
+         
          <h1 className='text-xl'>Create A new account</h1>
 
          <form action="" className="mt-4 w-3/5 flex flex-col justify-center items-start gap-4 ">
@@ -32,7 +37,7 @@ const Signup = () => {
                  placeholder='biswajitmuduli0544@gmail.com'
                  value={email}
                  onChange={(e) => setEmail( e.target.value)}
-                 className="p-1 w-full text-xs outline-none border"
+                 className="p-1 w-full text-xs outline-none border rounded-lg"
                  />
            </div>
 
@@ -44,7 +49,7 @@ const Signup = () => {
                     placeholder='******'
                     value={password}
                     onChange={(e) => setPassword( e.target.value)}
-                    className="p-1 w-full text-xs outline-none border"
+                    className="p-1 w-full text-xs outline-none border rounded-lg"
                     />
            </div>
            
@@ -54,15 +59,17 @@ const Signup = () => {
 
          
 
-            <div className="w-full">
-              <button onClick={handleForm} type='button' className="py-1 px-4 text-xs transition duration-500 ease-linear hover:bg-slate-500 bg-slate-400 rounded-2xl border-none cursor-pointer">Sign up</button>
+            <div className="w-full flex justify-center">
+              <button onClick={handleForm} type='button' className="py-1 px-4 text-xs transition duration-500 ease-linear hover:bg-slate-500 bg-slate-400 rounded-2xl border-none cursor-pointer">Log in</button>
            </div>
          </form>
 
           <p className='text-xs'>
            Don't have an account? &nbsp;
-           <Link to="/signup" className='group relative'>create new  <span className="absolute bg-purple-400 left-0 bottom-0 h-[2px] w-0  transition-all duration-300 group-hover:w-full"></span></Link> 
+           <Link to="/signup" className='group relative'>Sign up <span className="absolute bg-purple-400 left-0 bottom-0 h-[2px] w-0  transition-all duration-300 group-hover:w-full"></span></Link> 
           </p>
+        </div>
+      </div>
       </div>
     </>
   );

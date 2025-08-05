@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import heroImage from './imgback.avif';
 
 const Signup = () => {
  
@@ -28,13 +29,14 @@ const Signup = () => {
 
   return (
     <>
-      <div className="m-2 flex flex-col items-center justify-center ">
+     <div className="h-screen flex items-center justify-center  " style={{ backgroundImage: `url(${heroImage})` }}>
+      <div className="m-2 w-80 flex flex-col items-center justify-center border rounded-lg backdrop-blur " style={{ backgroundImage: `url(${heroImage})` }}>
         
          <h1 className='text-xl'>Create A new account</h1>
 
          <form action="" className="mt-4 w-3/5 flex flex-col justify-center items-start gap-4 ">
            
-            <div className="w-full  ">
+            <div className="w-full ">
               <label htmlFor="fullname" className='text-xs'>Full Name:</label>
               <input 
                  type="text" 
@@ -42,7 +44,7 @@ const Signup = () => {
                  value={fullName}
                  id='fullname'
                  onChange={(e) => setFullName( e.target.value)}
-                 className="p-1 w-full text-xs outline-none border"
+                 className="p-1 w-full text-xs outline-none  border rounded-lg"
                  />
            </div>
 
@@ -54,7 +56,7 @@ const Signup = () => {
                  value={userName}
                  id='username'
                  onChange={(e) => setUserName( e.target.value)}
-                 className="p-1.5 w-full text-xs outline-none border  "
+                 className="p-1.5 w-full text-xs outline-none border rounded-lg "
                  />
            </div>
 
@@ -66,7 +68,7 @@ const Signup = () => {
                  placeholder='biswajitmuduli0544@gmail.com'
                  value={email}
                  onChange={(e) => setEmail( e.target.value)}
-                 className="p-1 w-full text-xs outline-none border"
+                 className="p-1 w-full text-xs outline-none border rounded-lg"
                  />
            </div>
 
@@ -78,7 +80,7 @@ const Signup = () => {
                     placeholder='******'
                     value={password}
                     onChange={(e) => setPassword( e.target.value)}
-                    className="p-1 w-full text-xs outline-none border"
+                    className="p-1 w-full text-xs outline-none border rounded-lg"
                     />
            </div>
            
@@ -90,7 +92,7 @@ const Signup = () => {
                     placeholder="Siksha 'O' Anusandhan"
                     value={CollegeName}
                     onChange={(e) => setCollegeName( e.target.value)}
-                    className="p-1 w-full text-xs outline-none border"
+                    className="p-1 w-full text-xs outline-none border rounded-lg"
                     />
            </div>
 
@@ -102,7 +104,7 @@ const Signup = () => {
                     placeholder='MCA'
                      value={course}
                     onChange={(e) => setCourse( e.target.value)}
-                    className="p-1 w-full text-xs outline-none border"
+                    className="p-1 w-full text-xs outline-none border rounded-lg"
                     />
            </div>
 
@@ -117,7 +119,7 @@ const Signup = () => {
                     placeholder='Computer Application'
                      value={branch}
                     onChange={(e) => setBranch( e.target.value)}
-                    className="p-1 w-full text-xs outline-none border"
+                    className="p-1 w-full text-xs outline-none border rounded-lg"
                     />
                   </div>
                    
@@ -129,8 +131,7 @@ const Signup = () => {
                     placeholder='india'
                      value={country}
                     onChange={(e) => setCountry( e.target.value)}
-                    className="p-1 w-full text-xs outline-none border-none"
-                    />
+                    className="p-1 w-full text-xs outline-none border-none  border rounded-lg"/>
                   </div>
                 </div>
            </div>
@@ -144,6 +145,7 @@ const Signup = () => {
                    already have an account? &nbsp;
                    <Link to="/login" className='group relative'>Log in<span className="absolute bg-purple-400 left-0 bottom-0 h-[2px] w-0  transition-all duration-300 group-hover:w-full"></span></Link> 
                   </p>
+      </div>
       </div>
     </>
   );
