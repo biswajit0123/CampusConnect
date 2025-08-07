@@ -4,7 +4,7 @@ import Feed from "../Component/Feed"
 function ExplorePage() {
   return (
     <>
-    <div className="flex  bg-gray-100">
+    <div className="flex  bg-gray-100 min-h-screen">
           <Profile />
 
           {/* showing posts */}

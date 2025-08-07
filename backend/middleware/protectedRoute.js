@@ -1,4 +1,3 @@
-const { Messages } = require('openai/resources/beta/threads/messages.mjs');
 const User = require('../model/User.model.js')
 const jwt = require('jsonwebtoken')
 const protectedRoute = async (req, res, next) =>{

@@ -13,6 +13,8 @@ const Signup = () => {
 
   const navigate = useNavigate()
   const dispatch = useDispatch();
+
+  // handle form
   const handleForm = async () => {
     const formData = {
       email,

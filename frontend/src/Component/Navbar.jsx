@@ -54,7 +54,7 @@ function Navbar() {
           <li><Link to={isAuth ? "/" :"/campuses"}  className="relative group">Campuses  <span className={`absolute left-0 bottom-0 h-[2px] w-0  ${scrolled?'bg-white':"bg-purple-400"} transition-all duration-300 group-hover:w-full`}></span></Link></li>
 
 
-            <li className="border py-1 px-2 rounded-xl "><Link to={isAuth ? "/createpost" :"/"}  className="relative group">create <i className="fa-solid fa-plus"></i><span className={`absolute left-0 bottom-0 h-[2px] w-0  ${scrolled?'bg-white':"bg-purple-400"} transition-all duration-300 group-hover:w-full`}></span></Link></li>
+            <li className="border py-1 px-2 rounded-xl "><Link to="/createpost"  className="relative group"> <i className="fa-solid fa-plus"></i><span className={`absolute left-0 bottom-0 h-[2px] w-0  ${scrolled?'bg-white':"bg-purple-400"} transition-all duration-300 group-hover:w-full`}></span></Link></li>
 
 
           {!isAuth && <li className={`transition-all duration-500 ease-in-out border ${!scrolled ? "border-purple-400" :       "border-white"} px-2 hover:rounded-xl`}>
