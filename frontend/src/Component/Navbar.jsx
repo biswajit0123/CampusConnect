@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
-
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import {resetUser} from '../store/userSlice.js'
 function Navbar() {
 
-  const isAuth = false;
+  const isAuth = useSelector((state) => state.user.auth);
   const [scrolled, setScrolled] = useState(false);
   const [showBox, setShowBox] = useState(false)
+  const dispatch = useDispatch();
 
   useEffect(()=>{
      const onScroll  = ()=>{
@@ -21,13 +24,17 @@ function Navbar() {
 
   },[])
 
+  const handleLogout = () =>{
+    dispatch(resetUser());
+    console.log("ok")
+  }
 
   const toggle = ()=>{
     console.log("toggle")
     setShowBox((prev) => !prev)
   }
   return (
-    <div className={`transition  duration-1000 ease-in-out hover:shadow shadow-sm   flex justify-between px-5 py-2 h-14 items-center sticky top-0  ${scrolled?'bg-purple-400' : "bg-white"}   ${scrolled?'text-white' : "text-black"}`} >
+    <div className={`z-50 transition  duration-1000 ease-in-out hover:shadow shadow-sm   flex justify-between px-5 py-2 h-14 items-center sticky top-0  ${scrolled?'bg-purple-400' : "bg-white"}   ${scrolled?'text-white' : "text-black"}`} >
       
       {/* logo */}
       <div className="text-xl font-bold">
@@ -37,21 +44,29 @@ function Navbar() {
       {/* links */}
       <div className="hidden sm:block">
          <ul className="flex gap-5 font-normal">
-              <li><Link to="/" className="relative group">Explore   <span className={`absolute left-0 bottom-0 h-[2px] w-0  ${scrolled?'bg-white':"bg-purple-400"} transition-all duration-300 group-hover:w-full`}></span>
+
+          {/* if any erroe occure can remove  conditional statement */}
+              <li><Link to={isAuth ? "/" :"/login"} className="relative group">Explore   <span className={`absolute left-0 bottom-0 h-[2px] w-0  ${scrolled?'bg-white':"bg-purple-400"} transition-all duration-300 group-hover:w-full`}></span>
               </Link></li>
-          <li><Link to="/q=popular" className="relative group">Popular  <span className={`absolute left-0 bottom-0 h-[2px] w-0  ${scrolled?'bg-white':"bg-purple-400"} transition-all duration-300 group-hover:w-full`}></span></Link></li>
-          <li><Link to="/campuses" className="relative group">Campuses  <span className={`absolute left-0 bottom-0 h-[2px] w-0  ${scrolled?'bg-white':"bg-purple-400"} transition-all duration-300 group-hover:w-full`}></span></Link></li>
+
+         
+
+          <li><Link to={isAuth ? "/" :"/campuses"}  className="relative group">Campuses  <span className={`absolute left-0 bottom-0 h-[2px] w-0  ${scrolled?'bg-white':"bg-purple-400"} transition-all duration-300 group-hover:w-full`}></span></Link></li>
+
+
+            <li className="border py-1 px-2 rounded-xl "><Link to={isAuth ? "/createpost" :"/"}  className="relative group">create <i className="fa-solid fa-plus"></i><span className={`absolute left-0 bottom-0 h-[2px] w-0  ${scrolled?'bg-white':"bg-purple-400"} transition-all duration-300 group-hover:w-full`}></span></Link></li>
+
 
           {!isAuth && <li className={`transition-all duration-500 ease-in-out border ${!scrolled ? "border-purple-400" :       "border-white"} px-2 hover:rounded-xl`}>
           <Link to="/login" className="text-xs text-center">Log in</Link>
          </li> }
 
          {!isAuth && <li className={`transition-all duration-500 ease-in-out border ${!scrolled ? "border-purple-400" : "border-white"} px-2 hover:rounded-xl`}>
-            <Link to="/signup" className="text-xs text-center">Sign in</Link>
+            <Link to="/signup" className="text-xs text-center">Sign up</Link>
           </li>  }
-         
+          
          {isAuth && <li className={`transition-all duration-500 ease-in-out border ${!scrolled ? "border-purple-400" : "border-white"} px-2 hover:rounded-xl`}>
-            <Link to="/signup" className="text-xs text-center">logout</Link>
+            <button onClick={handleLogout} className="text-xs text-center">logout</button>
           </li>  }
 
          </ul>

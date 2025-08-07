@@ -3,10 +3,10 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 module.exports.register = async (req, res) =>{
-const {fullName, userName, email, password, collegeName, course, branch} = req.body;
+const {fullName, userName, email, password, collegeName, course, branch, country} = req.body;
 
-if(!fullName || !userName || !email || !password || !collegeName || !course || !branch){
-   return res.status(400).json({message:"fill all the details"});
+if(!fullName || !userName || !email || !password || !collegeName || !course || !branch || !country){
+   return res.status(400).json({message:"fill all the details", success:false});
 }
 
 //if username/email already exists
@@ -29,13 +29,13 @@ try {
    collegeName,
    course,
    branch,
+   country,
 }) 
-
 const savedUser = await user.save();
-
-return res.status(201).json({message:"register succesfully", success:true})
+console.log(savedUser)
+ res.status(201).json({message:"register succesfully", success:true})
 } catch (error) {
-   return res.status(501).json()
+   return res.status(501).json({meassage:"Internal Server error", success:false})
 }
 
 
@@ -74,7 +74,7 @@ res.cookie('token',token,{
    sameSite:'strict',
    maxAge: 60 * 60 * 1000
 });
-      return res.status(200).json({message:"loggedin succesfully", user:user})
+    res.status(200).json({message:"loggedin succesfully", success:true,user})
    } catch (error) {
       console.log("error in", error);
       return res.status(402).json({message:"internal server error"});

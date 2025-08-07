@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import heroImage from './imgback.avif';
+import api from '../api/InternalApi';
+import { ToastContainer, toast } from 'react-toastify';
 
 const Signup = () => {
  
@@ -8,10 +10,12 @@ const Signup = () => {
   const [password, setPassword] = useState("");
   const [userName, setUserName] = useState("");
   const [fullName, setFullName] = useState("");
-  const [CollegeName, setCollegeName] = useState("");
+  const [collegeName, setCollegeName] = useState("");
   const [course, setCourse] = useState("");
   const [branch, setBranch] = useState("");
   const [country, setCountry] = useState("");
+
+  const navigate = useNavigate()
 
   const handleForm = async () => {
     const formData = {
@@ -19,22 +23,39 @@ const Signup = () => {
       userName,
       email,
       password,
-      CollegeName,
+      collegeName,
       course,  
       branch,
       country
     }
-    console.log(formData)
+    try {
+      const res = await api.post('/auth/register', formData);
+      const data = res.data.message;
+      toast.success(data);
+      setTimeout(() => {
+       navigate('/login');
+      }, 1000);
+    } catch (error) {
+       const result = error.response.data.message;
+       toast.error(result);
+       console.log(result)
+    }
+    
   }
-
+  
+  const prevent = (e) =>{
+   e.preventDefault();
+  }
   return (
     <>
-     <div className="h-screen flex items-center justify-center  " style={{ backgroundImage: `url(${heroImage})` }}>
-      <div className="m-2 w-80 flex flex-col items-center justify-center border rounded-lg backdrop-blur " style={{ backgroundImage: `url(${heroImage})` }}>
+  <ToastContainer/>
+     <div className=" flex items-center justify-center  " style={{ backgroundImage: `url(${heroImage})` }}>
+         
+      <div className=" z-0 m-2 w-3/5 flex flex-col items-center justify-center border rounded-lg backdrop-blur " >
         
          <h1 className='text-xl'>Create A new account</h1>
 
-         <form action="" className="mt-4 w-3/5 flex flex-col justify-center items-start gap-4 ">
+         <form action="" className="mt-4 w-3/5 flex flex-col justify-center items-start gap-4 " onSubmit={prevent}>
            
             <div className="w-full ">
               <label htmlFor="fullname" className='text-xs'>Full Name:</label>
@@ -90,7 +111,7 @@ const Signup = () => {
                     id='collegename'
                     type="text" 
                     placeholder="Siksha 'O' Anusandhan"
-                    value={CollegeName}
+                    value={collegeName}
                     onChange={(e) => setCollegeName( e.target.value)}
                     className="p-1 w-full text-xs outline-none border rounded-lg"
                     />
@@ -129,7 +150,7 @@ const Signup = () => {
                      id='country'
                     type="text" 
                     placeholder='india'
-                     value={country}
+                    value={country}
                     onChange={(e) => setCountry( e.target.value)}
                     className="p-1 w-full text-xs outline-none border-none  border rounded-lg"/>
                   </div>
