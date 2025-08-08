@@ -75,17 +75,61 @@ const postControll = {
         }
 
     },
-    
-    async delete(req, res){
-      const {id} = req.params;
+      
+   // Controller
+        async getPostById(req, res) {
+            const { id: postId } = req.params;
 
-      try {
-              await Post.findByIdAndDelete(id);
-res.status(200).json({message:"deleted succesfully"})
-      } catch (error) {
-        console.log("error occure", error);
-        res.status(402).json({message:"internal server error"})
-      }
+            if (!postId) {
+                return res.status(400).json({ message: "Post ID is required" });
+            }
+            console.log(postId)
+            try {
+                // const post = await Post.findById(postId).populate('owner').populate('comment');
+
+                const post = await Post.findById(postId)
+                        .populate('owner')
+                        .populate({
+                            path: 'comment',
+                            populate: {
+                            path: 'owner', // the field inside each comment
+                            model: 'User'  // optional if Mongoose can infer it
+                            }
+                        });
+                if (!post) {
+                    return res.status(404).json({ message: "Post not found" });
+                }
+
+                res.status(200).json({ success: true, post });
+            } catch (error) {
+                console.error("Error fetching post:", error);
+                res.status(500).json({ message: "Server error" });
+            }
+        },
+
+   async delete(req, res) {
+  const { id } = req.params;
+  const user = req.user;
+
+  try {
+    const post = await Post.findById(id);
+
+    if (!post) {
+      return res.status(404).json({ message: "Post not found" });
+    }
+
+    // Check if the logged-in user owns the post
+    if (post.owner.toString() !== user._id.toString()) {
+      return res.status(403).json({ message: "Unauthorized to delete this post" });
+    }
+
+    await Post.findByIdAndDelete(id);
+
+    res.status(200).json({ message: "Deleted successfully" });
+  } catch (error) {
+    console.error("Error occurred:", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
 
     },
 }

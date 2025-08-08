@@ -6,7 +6,7 @@ import Protected from "./Component/Protected.jsx";
 import CreatePost from "./Pages/CreatePost.jsx";
 import { useSelector } from "react-redux";
 import ExplorePage from "./Pages/ExplorePage.jsx";
-
+import PostDetail from "./Pages/PostDetail.jsx";
 function App() {
 
 const isAuth = useSelector((state) => state.user.auth);
@@ -33,6 +33,13 @@ const isAuth = useSelector((state) => state.user.auth);
               <CreatePost />
               </Protected>
               } />
+
+             <Route path="/:id" element={
+              <Protected isAuth={isAuth}> 
+              <PostDetail />
+              </Protected>
+              } />
+
           </Routes>
         </div>
       </div>

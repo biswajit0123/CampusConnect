@@ -21,12 +21,13 @@ const getPosts = useCallback(async () => {
   useEffect(() => {
     getPosts();
   }, [getPosts]);
-useEffect(() => {
-  console.log("Updated allPost:", allPost);
-}, [allPost]);
+  
+// useEffect(() => {
+//   console.log("Updated allPost:", allPost);
+// }, [allPost]);
 
   return (
-         <div className='w-3/4 p-4 px-2 '>
+         <div className='w-full  sm:w-3/4 sm:p-4 px-2 mb-10'>
           <ToastContainer/>
           {
             allPost.length > 0 ? (
@@ -34,7 +35,7 @@ useEffect(() => {
                      <Post key={post._id} post={post} refreshPosts={getPosts} />
                     ))
                ) : (
-                   <p>No posts yet</p> 
+                   <p className='text-center'>No posts yet</p> 
             )
           }
        
