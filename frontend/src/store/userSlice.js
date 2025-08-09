@@ -31,6 +31,7 @@ const userSlice = createSlice({
             state.country  = country;
             state.branch = branch;
             state.auth = true;
+          
 
         },
 

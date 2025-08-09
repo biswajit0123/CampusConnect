@@ -30,7 +30,7 @@ function PostDetail() {
     <>
     <div className='flex flex-col  md:flex-row p-3 gap-2 bg-gray-50 items-start min-h-screen'>
        <Detail  post={post} refreshPostDetail={getPost}/>
-       {post?.comment?.length > 0 ?   <Commentfeed comment={post.comment} /> : <p>Become first Commenter on this post </p> }
+       {post?.comment?.length > 0 ?   <Commentfeed comment={post.comment} postId={post?._id} refreshPostDetail={getPost}/> : <p>Become first Commenter on this post </p> }
      
     </div>
     

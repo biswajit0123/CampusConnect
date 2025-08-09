@@ -7,6 +7,8 @@ import CreatePost from "./Pages/CreatePost.jsx";
 import { useSelector } from "react-redux";
 import ExplorePage from "./Pages/ExplorePage.jsx";
 import PostDetail from "./Pages/PostDetail.jsx";
+import AdminLogin from "./Pages/AdminLogin.jsx";
+import Dashboard from "./Pages/Dashboard.jsx";
 function App() {
 
 const isAuth = useSelector((state) => state.user.auth);
@@ -40,6 +42,13 @@ const isAuth = useSelector((state) => state.user.auth);
               </Protected>
               } />
 
+              <Route path="/admin/login" element={
+                <AdminLogin />
+              } />
+
+               <Route path="/admin" element={
+                <Dashboard />
+              } />
           </Routes>
         </div>
       </div>

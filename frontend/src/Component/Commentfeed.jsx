@@ -1,7 +1,6 @@
 import Comment from "./Comment";
 
-function Commentfeed({ comment }) {
-  console.log(comment);
+function Commentfeed({ comment, postId, refreshPostDetail }) {
 
   return (
     <div className="border w-full md:w-1/2 bg-white">
@@ -9,6 +8,8 @@ function Commentfeed({ comment }) {
         <Comment 
           key={index} 
           cmt={cmt}
+          postId={postId}
+          refreshPostDetail={refreshPostDetail}
         />
       ))}
     </div>
