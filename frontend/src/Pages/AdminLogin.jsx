@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from '../api/InternalApi.js';
 import { ToastContainer, toast } from 'react-toastify';
-
-
-
+import { useDispatch } from "react-redux";
+import  {setAdmin}  from '../store/adminSlice.js'
+import { Link } from "react-router-dom";
 export default function AdminLogin() {
   const navigate = useNavigate();
 
@@ -15,6 +15,7 @@ export default function AdminLogin() {
   const [error, setError] = useState("");
   const [remember, setRemember] = useState(false);
 
+  const dispatch = useDispatch();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -32,6 +33,8 @@ export default function AdminLogin() {
      setTimeout(()=>{
      navigate('/admin')
      },300)
+     const admin = result.data.admin;
+     dispatch(setAdmin(admin))
      console.log(result.data.message)
     } catch (err) {
       setError(err.response.data.message || "Network error");
@@ -70,6 +73,12 @@ export default function AdminLogin() {
         {/* right: form */}
         <div className="bg-white rounded-xl p-6 shadow-md">
           <div className="mb-6">
+
+              <Link to="/login" className='group relative'>
+                student go here <i className="fa-solid fa-arrow-right"></i>
+                <span className="absolute bg-purple-400 left-0 bottom-0 h-[2px] w-0 transition-all duration-300 group-hover:w-full"></span>
+              </Link>
+
             <h2 className="text-2xl font-semibold">Admin Sign In</h2>
             <p className="text-sm text-gray-500">Enter your admin credentials to continue</p>
           </div>
@@ -136,6 +145,8 @@ export default function AdminLogin() {
           <div className="mt-6 text-xs text-center text-gray-400">
             Only authorized admins can access this panel.
           </div>
+
+         
         </div>
       </div>
     </div>

@@ -9,6 +9,8 @@ const cors = require('cors');
 const postRoute = require('./router/post.route.js')
 const commentRoute = require('./router/comment.route.js')
 const adminRoute = require('./router/admin.route.js')
+const campusRoute = require('./router/campus.route.js')
+
 //database connection
 main();
 app.use(express.json())
@@ -22,6 +24,7 @@ app.use(cors({
     app.use('/post',postRoute);
     app.use('/comment', commentRoute);
     app.use('/admin',adminRoute )
+    app.use('/campus', campusRoute)
 
 app.get('/test', (req, res)=>{
 res.status(201).json({msg:"ok"});

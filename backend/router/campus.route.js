@@ -1,14 +1,11 @@
 
 const express = require('express')
-const adminController = require('../controller/admin.controller.js')
+const campusController = require('../controller/campus.controller.js')
+
 const router = express.Router();
-const protectedAdminRoute = require('../middleware/protectedAdminRoute.js')
 
-router.post('/login',adminController.login)
-router.post('/signup',adminController.adminCreate)
-router.post('/logout', adminController.logout);
+router.get('/', campusController.campusName)
 
-router.get('/',protectedAdminRoute, adminController.dashboard);
-router.post('/addcampus', protectedAdminRoute, adminController.addCampus )
+
     
 module.exports = router                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       

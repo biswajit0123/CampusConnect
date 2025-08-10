@@ -3,13 +3,14 @@ import { Link } from "react-router-dom"
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import {resetUser} from '../store/userSlice.js'
+import { resetAdmin } from "../store/adminSlice.js";
 function Navbar() {
 
   const isAuth = useSelector((state) => state.user.auth);
+  const isAdmin = useSelector((state) => state.admin.auth);
   const [scrolled, setScrolled] = useState(false);
   const [showBox, setShowBox] = useState(false)
   const dispatch = useDispatch();
-
   useEffect(()=>{
      const onScroll  = ()=>{
       if(window.scrollY > 0){
@@ -26,6 +27,7 @@ function Navbar() {
 
   const handleLogout = () =>{
     dispatch(resetUser());
+    dispatch(resetAdmin())
     console.log("ok")
   }
 
@@ -33,7 +35,41 @@ function Navbar() {
     console.log("toggle")
     setShowBox((prev) => !prev)
   }
+  
+
+   
+
   return (
+  isAdmin ? (
+    // Admin navbar
+    <div
+      className={`z-50 transition duration-1000 ease-in-out hover:shadow shadow-sm flex justify-between px-5 py-2 h-14 items-center sticky top-0  
+        ${scrolled ? 'bg-purple-400 text-white' : "bg-white text-black"}`}
+    >
+      <div className="text-xl font-bold">
+        <Link to="/admin">
+          CampusConn<span className={scrolled ? "text-white" : "text-purple-400"}>ect</span>
+        </Link>
+      </div>
+
+      <div className=" sm:block">
+        <ul className="flex gap-5 font-normal">
+          <li>
+            <Link to="/admin/addcampus" className="relative group">
+             Add Campus
+              <span
+                className={`absolute left-0 bottom-0 h-[2px] w-0 ${scrolled ? 'bg-white' : "bg-purple-400"} transition-all duration-300 group-hover:w-full`}
+              ></span>
+            </Link>
+          </li>
+          <li>
+          
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  ) : (
     <div className={`z-50 transition  duration-1000 ease-in-out hover:shadow shadow-sm   flex justify-between px-5 py-2 h-14 items-center sticky top-0  ${scrolled?'bg-purple-400' : "bg-white"}   ${scrolled?'text-white' : "text-black"}`} >
       
       {/* logo */}
@@ -51,21 +87,21 @@ function Navbar() {
 
          
 
-          <li><Link to={isAuth ? "/" :"/campuses"}  className="relative group">Campuses  <span className={`absolute left-0 bottom-0 h-[2px] w-0  ${scrolled?'bg-white':"bg-purple-400"} transition-all duration-300 group-hover:w-full`}></span></Link></li>
+          <li><Link to={isAuth ? "/campus" :"/login"}  className="relative group">Campuses  <span className={`absolute left-0 bottom-0 h-[2px] w-0  ${scrolled?'bg-white':"bg-purple-400"} transition-all duration-300 group-hover:w-full`}></span></Link></li>
 
 
             <li className="border py-1 px-2 rounded-xl "><Link to="/createpost"  className="relative group"> <i className="fa-solid fa-plus"></i><span className={`absolute left-0 bottom-0 h-[2px] w-0  ${scrolled?'bg-white':"bg-purple-400"} transition-all duration-300 group-hover:w-full`}></span></Link></li>
 
 
-          {!isAuth && <li className={`transition-all duration-500 ease-in-out border ${!scrolled ? "border-purple-400" :       "border-white"} px-2 hover:rounded-xl`}>
+          {!(isAuth || isAdmin ) && <li className={`transition-all duration-500 ease-in-out border ${!scrolled ? "border-purple-400" :       "border-white"} px-2 hover:rounded-xl`}>
           <Link to="/login" className="text-xs text-center">Log in</Link>
          </li> }
 
-         {!isAuth && <li className={`transition-all duration-500 ease-in-out border ${!scrolled ? "border-purple-400" : "border-white"} px-2 hover:rounded-xl`}>
+         {!(isAuth || isAdmin ) && <li className={`transition-all duration-500 ease-in-out border ${!scrolled ? "border-purple-400" : "border-white"} px-2 hover:rounded-xl`}>
             <Link to="/signup" className="text-xs text-center">Sign up</Link>
           </li>  }
           
-         {isAuth && <li className={`transition-all duration-500 ease-in-out border ${!scrolled ? "border-purple-400" : "border-white"} px-2 hover:rounded-xl`}>
+         { (isAuth || isAdmin ) && <li className={`transition-all duration-500 ease-in-out border ${!scrolled ? "border-purple-400" : "border-white"} px-2 hover:rounded-xl`}>
             <button onClick={handleLogout} className="text-xs text-center">logout</button>
           </li>  }
 
@@ -86,6 +122,8 @@ function Navbar() {
       <i className="fa-solid fa-bars sm:hidden text-2xl cursor-pointer   transition-all duration-500 ease-in-out" onClick={toggle}></i>
     </div>
   )
+);
+
 }
 
 export default Navbar

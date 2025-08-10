@@ -2,6 +2,10 @@
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const Admin = require('../model/Admin.model.js')
+const Post = require('../model/Post.model.js')
+const User = require('../model/User.model.js')
+const Comment = require('../model/Comment.module.js')
+const Campus = require('../model/Campus.model.js')
 
 module.exports = {
   // Create Admin
@@ -89,7 +93,47 @@ async logout(req, res) {
     console.error(error);
     res.status(500).json({ message: 'Server error' });
   }
+},
+
+async dashboard(req, res){
+
+  try {
+    const posts = await Post.find({}).populate('owner');
+    const comments = await Comment.find({});
+    const users = await User.find({});
+
+    res.status(200).json({users, posts, comments})
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({message:"INternal server error"})
+  }
+},
+
+async addCampus(req, res){
+  try {
+      const { name, location, description, image } = req.body;
+
+      // Validate required fields
+      if (!name || !location) {
+        return res.status(400).json({ message: "Name and location are required" });
+      }
+
+      // Create new campus
+      const newCampus = new Campus({
+        name,
+        location,
+        description,
+        image,
+      });
+
+      await newCampus.save();
+
+      res.status(201).json({
+        message: "Campus added successfully"
+      });
+    } catch (error) {
+      console.error("Error adding campus:", error);
+      res.status(500).json({ message: "Server error", error: error.message });
+    }
 }
-
-
 };

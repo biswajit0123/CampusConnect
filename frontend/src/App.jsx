@@ -8,11 +8,18 @@ import { useSelector } from "react-redux";
 import ExplorePage from "./Pages/ExplorePage.jsx";
 import PostDetail from "./Pages/PostDetail.jsx";
 import AdminLogin from "./Pages/AdminLogin.jsx";
-import Dashboard from "./Pages/Dashboard.jsx";
+import AdminDashboard from "./Pages/AdminDashboard.jsx";
+import ProtectedAdmin from "./Component/ProtectedAdmin.jsx";
+import UserList from "./Pages/UserList.jsx";
+import PostList from "./Pages/PostList.jsx";
+import CommentList from "./Pages/CommentList.jsx";
+import AddCampus from "./Pages/AddCampus.jsx";
+import Campus from "./Pages/Campus.jsx";
 function App() {
 
 const isAuth = useSelector((state) => state.user.auth);
-
+const isAdmin = useSelector((state) => state.admin.auth)
+console.log(isAdmin)
   return (
     <BrowserRouter>
      
@@ -35,7 +42,11 @@ const isAuth = useSelector((state) => state.user.auth);
               <CreatePost />
               </Protected>
               } />
-
+             <Route path="/campus" element={
+              <Protected isAuth={isAuth}> 
+              <Campus />
+              </Protected>
+              } />
              <Route path="/:id" element={
               <Protected isAuth={isAuth}> 
               <PostDetail />
@@ -47,7 +58,31 @@ const isAuth = useSelector((state) => state.user.auth);
               } />
 
                <Route path="/admin" element={
-                <Dashboard />
+                <ProtectedAdmin isAdmin={isAdmin}>
+                <AdminDashboard />
+                </ProtectedAdmin>
+              } />
+               <Route path="/admin/userlist" element={
+                <ProtectedAdmin isAdmin={isAdmin}>
+                <UserList />
+                </ProtectedAdmin>
+              } />
+
+              <Route path="/admin/postlist" element={
+                <ProtectedAdmin isAdmin={isAdmin}>
+                <PostList />
+                </ProtectedAdmin>
+              } />
+
+               <Route path="/admin/commentlist" element={
+                <ProtectedAdmin isAdmin={isAdmin}>
+                <CommentList />
+                </ProtectedAdmin>
+              } />
+              <Route path="/admin/addcampus" element={
+                <ProtectedAdmin isAdmin={isAdmin}>
+                <AddCampus />
+                </ProtectedAdmin>
               } />
           </Routes>
         </div>
