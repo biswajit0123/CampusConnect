@@ -1,80 +1,63 @@
-import React from 'react';
+import React from 'react'
+import { useSelector } from "react-redux";
+import api from '../api/InternalApi';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import profileImg from './imgback.avif'
 
+function profilepage() {
 
-const Profile = () => {
+  const user = useSelector((state) => state.user)
+   const [posts, setPosts] = useState([]);
+
+useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        const result = await api.get('/auth/userpost'); // adjust URL as needed
+        setPosts(result.data);
+        console.log(result.data)
+      } catch (error) {
+        console.error('Error fetching posts:', error);
+      }
+    };
+
+    fetchPosts();
+  }, []); 
   return (
-    <div className="max-w-xl mx-auto p-4 bg-white rounded shadow">
-      <div className="flex flex-col items-center">
-        <div className="w-32 h-32 rounded-full overflow-hidden">
-          <img src={profileImg} alt="Profile" className="w-full h-full object-cover" />
-        </div>
+    <div className='bg-gray-50 p-6 flex flex-col gap-1 items-center'>
+   
+   <div className='border w-2/3 bg-white flex flex-col items-start p-3'>
+     <img src="https://avatar.iran.liara.run/public/boy" alt="" className='w-14'/>
+      <p>@{user.userName}</p>
+      <p>Full Name : {user.fullName}</p>
+      <p>Email : {user.email}</p>
+      <p>College Name : {user.collgeName}</p>
+      <p>Course : {user.course}</p>
+      <p>Branch : {user.branch}</p>
+      <p>Country : {user.country}</p>
 
-        <div className="text-center mt-4">
-          <h1 className="text-xl font-bold" id="userName">Biswajit Muduli</h1>
-          <p className="text-gray-500" id="userHandle">@biswajit</p>
-        </div>
-
-        <div className="mt-3">
-          <button className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600" type="button">Follow</button>
-        </div>
-
-        <p className="text-center text-sm text-gray-700 mt-4" id="userBio">
-          Frontend Developer | Building awesome web experiences with ReactJs, HTML and CSS. Love open source and clean code!
-        </p>
-
-        <p className="text-gray-400 text-sm mt-2">Joined: 2020-01-01</p>
-
-        <div className="flex justify-center space-x-6 mt-4">
-          <p><b>56</b> Following</p>
-          <p><b>43</b> Followers</p>
-        </div>
-
-        <div className="flex justify-around w-full mt-6 border-b border-gray-200">
-          <div className="py-2 border-b-2 border-blue-500">Posts</div>
-          <div className="py-2 text-gray-500">Media</div>
-          <div className="py-2 text-gray-500">Likes</div>
-        </div>
-
-        <div className="mt-6 w-full">
-          <Post
-            avatar="https://via.placeholder.com/50"
-            name="Jane Doe"
-            handle="@janedoe"
-            time="1h"
-            content="Just finished building my new portfolio website! 🚀"
-          />
-          <Post
-            avatar="https://via.placeholder.com/50"
-            name="DevGuy"
-            handle="@devguy"
-            time="2h"
-            content="React + Tailwind is such a powerful combo. 💻🔥"
-          />
-          <Post
-            avatar="https://via.placeholder.com/50"
-            name="TravelBug"
-            handle="@travelbug"
-            time="3h"
-            content="Exploring the mountains this weekend. 🏞 Any tips?"
-          />
-        </div>
-      </div>
+   </div>
+    
+{posts && posts.map((p) => {
+  return (
+    <div
+      key={p._id}
+      className="border w-full rounded-md p-4 mb-4 shadow-sm hover:shadow-md transition-shadow cursor-pointer bg-white"
+    >
+      <h3 className="text-lg font-semibold text-gray-800">{p.title}</h3>
+      <p className="text-gray-600 text-sm">{p.content || 'No description available'}</p>
+      <p className="text-gray-400 text-xs mt-2">
+        Posted on: {new Date(p.date || p.createdAt).toLocaleDateString()}
+      </p>
+       <Link to={`/${p._id}`} className="text-[0.65rem] font-extralight text-gray-500 relative group">
+            view detail <i className="fa-solid fa-arrow-right text-[0.65rem] opacity-0 group-hover:opacity-60"></i>
+            <span className="absolute left-0 bottom-0 h-[1px] w-0 bg-purple-400 transition-all duration-300 group-hover:w-full"></span>
+          </Link>
     </div>
   );
-};
+})}
 
-const Post = ({ avatar, name, handle, time, content }) => (
-  <div className="flex space-x-4 mb-6">
-    <img src={avatar} className="w-12 h-12 rounded-full" alt="User Avatar" />
-    <div>
-      <div className="text-sm text-gray-700">
-        <strong>{name}</strong> <span className="text-gray-500">{handle} · {time}</span>
-      </div>
-      <p className="text-sm mt-1 text-gray-800">{content}</p>
     </div>
-  </div>
-);
+  )
+}
 
-export default Profile;
+export default profilepage

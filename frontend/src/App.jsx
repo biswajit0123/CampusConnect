@@ -15,6 +15,8 @@ import PostList from "./Pages/PostList.jsx";
 import CommentList from "./Pages/CommentList.jsx";
 import AddCampus from "./Pages/AddCampus.jsx";
 import Campus from "./Pages/Campus.jsx";
+import ProfilePage from "./Pages/profilepage.jsx";
+import Footer from "./Component/Footer.jsx";
 function App() {
 
 const isAuth = useSelector((state) => state.user.auth);
@@ -45,6 +47,11 @@ console.log(isAdmin)
              <Route path="/campus" element={
               <Protected isAuth={isAuth}> 
               <Campus />
+              </Protected>
+              } />
+               <Route path="/profilepage" element={
+              <Protected isAuth={isAuth}> 
+              <ProfilePage />
               </Protected>
               } />
              <Route path="/:id" element={
@@ -87,6 +94,7 @@ console.log(isAdmin)
           </Routes>
         </div>
       </div>
+      <Footer />
     </BrowserRouter>
   );
 }

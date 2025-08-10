@@ -1,7 +1,7 @@
 const User = require('../model/User.model.js')
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-
+const Post = require('../model/Post.model.js')
 module.exports.register = async (req, res) =>{
 const {fullName, userName, email, password, collegeName, course, branch, country} = req.body;
 
@@ -114,5 +114,15 @@ module.exports.logout = (req, res) => {
     });
 
     return res.status(200).json({ message: "Logged out successfully" });
+};
+
+module.exports.getpost = async (req, res) => {
+  try {
+    const userId = req.user._id;
+    const posts = await Post.find({ owner: userId });
+    res.status(200).json(posts);
+  } catch (error) {
+    res.status(500).json({ message: 'Server error', error: error.message });
+  }
 };
 

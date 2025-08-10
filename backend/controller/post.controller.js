@@ -20,6 +20,7 @@ const postControll = {
   async create(req, res){
     
         const {title, content} = req.body;
+        const collegeName = req.user.collegeName;
         if(!title || !content){
             return res.status(400).json({message:"fill all the details", success:false})
         }
@@ -29,7 +30,8 @@ const postControll = {
             const post = new Post({
                  title,
                  content,
-                 owner:user._id
+                 owner:user._id,
+                 collegeName
             })
 
             const savedPost = await post.save();
