@@ -2,6 +2,8 @@ const User = require('../model/User.model.js')
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const Post = require('../model/Post.model.js')
+const Campus = require('../model/Campus.model.js')
+
 module.exports.register = async (req, res) =>{
 const {fullName, userName,gender, email, password, collegeName, course, branch, country} = req.body;
 
@@ -9,6 +11,10 @@ if(!fullName || !userName || !email || !password || !collegeName || !course || !
    return res.status(400).json({message:"fill all the details", success:false});
 }
 
+ const campusExists = await Campus.findOne({name: collegeName});
+   if (!campusExists) {
+      return res.status(400).json({ message: "Campus does not exist", success: false });
+   }
 //if username/email already exists
 const existUser =await User.findOne({ $or:[
    {userName:userName},
