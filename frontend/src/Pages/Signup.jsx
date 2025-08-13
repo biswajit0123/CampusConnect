@@ -9,6 +9,7 @@ import { useEffect } from 'react';
 const Signup = () => {
 
   const [email, setEmail] = useState("");
+  const [gender, setGender] = useState("");
   const [password, setPassword] = useState("");
   const [userName, setUserName] = useState("");
   const [fullName, setFullName] = useState("");
@@ -21,10 +22,26 @@ const Signup = () => {
   const navigate = useNavigate();
 
   const handleForm = async () => {
+     // Validation
+    if (password.length < 6) {
+      return toast.error("Password must be at least 6 characters long");
+    }
+    if (!/[A-Z]/.test(password)) {
+      return toast.error("Password must contain at least one uppercase letter");
+    }
+    if (!/\d/.test(password)) {
+      return toast.error("Password must contain at least one number");
+    }
+    if (!/[!@#$%^&*]/.test(password)) {
+      return toast.error("Password must contain at least one special character");
+    }
+
+
     const formData = {
       fullName,
       userName,
       email,
+      gender,
       password,
       collegeName,
       course,
@@ -62,8 +79,8 @@ const [filteredSuggestions, setFilteredSuggestions] = useState([]);
   return (
     <>
       <ToastContainer />
-      <div className="flex items-center justify-center" style={{ backgroundImage: `url(${heroImage})` }}>
-        <div className="z-0 m-2 w-3/5 flex flex-col items-center justify-center border rounded-lg backdrop-blur">
+      <div className="flex items-center justify-center " style={{ backgroundImage: `url(${heroImage})` }}>
+        <div className="z-0 m-2 w-3/5 flex flex-col items-center justify-center border rounded-lg backdrop-blur mb-8">
           <h1 className='text-xl'>Create A new account</h1>
 
           <form
@@ -93,7 +110,17 @@ const [filteredSuggestions, setFilteredSuggestions] = useState([]);
                 className="p-1.5 w-full text-xs outline-none border rounded-lg"
               />
             </div>
-
+              <div className="w-full">
+              <label htmlFor="gender" className='text-xs'>Gender:</label>
+              <input
+                type="text"
+                placeholder='male | female'
+                value={gender}
+                id='gender'
+                onChange={(e) => setGender(e.target.value)}
+                className="p-1.5 w-full text-xs outline-none border rounded-lg"
+              />
+            </div>
             <div className="w-full">
               <label htmlFor="email" className='text-xs'>Email:</label>
               <input

@@ -17,6 +17,7 @@ import AddCampus from "./Pages/AddCampus.jsx";
 import Campus from "./Pages/Campus.jsx";
 import ProfilePage from "./Pages/profilepage.jsx";
 import Footer from "./Component/Footer.jsx";
+import HomePage from "./Pages/home.jsx";
 function App() {
 
 const isAuth = useSelector((state) => state.user.auth);
@@ -37,6 +38,8 @@ console.log(isAdmin)
               } />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
+            <Route path="/home" element={<HomePage />} />
+
 
             
              <Route path="/createpost" element={

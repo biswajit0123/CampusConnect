@@ -27,6 +27,9 @@ const postSchema = new mongoose.Schema({
     collegeName:{
           type:String,
         required:true 
+    },
+    image:{
+        type:String,
     }
     
 }, {timestamps:true})

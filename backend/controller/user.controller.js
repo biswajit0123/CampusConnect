@@ -3,9 +3,9 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const Post = require('../model/Post.model.js')
 module.exports.register = async (req, res) =>{
-const {fullName, userName, email, password, collegeName, course, branch, country} = req.body;
+const {fullName, userName,gender, email, password, collegeName, course, branch, country} = req.body;
 
-if(!fullName || !userName || !email || !password || !collegeName || !course || !branch || !country){
+if(!fullName || !userName || !email || !password || !collegeName || !course || !branch || !country || !gender){
    return res.status(400).json({message:"fill all the details", success:false});
 }
 
@@ -25,6 +25,7 @@ try {
    fullName,
    userName,
    email,
+   gender,
    password:hasedPassword,
    collegeName,
    course,

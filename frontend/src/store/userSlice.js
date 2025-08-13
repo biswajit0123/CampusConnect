@@ -10,6 +10,7 @@ const initialState = {
     course:"",
     branch:"",
     country:"",
+    gender:"",
     auth:false
 }
 
@@ -20,9 +21,10 @@ const userSlice = createSlice({
     reducers:{
         setUser: ( state, action ) =>{
 
-            const {_id, fullName, userName, email, branch, country, course, collegeName }= action.payload;
+            const {_id,gender, fullName, userName, email, branch, country, course, collegeName }= action.payload;
 
             state._id = _id;
+            state.gender = gender;
             state.userName = userName;
             state.fullName = fullName;
             state.email  = email;
@@ -44,6 +46,7 @@ const userSlice = createSlice({
             state.course = "";
             state.country  = "";
             state.branch = "";
+            state.gender ="";   
             state.auth = false;
         }
 

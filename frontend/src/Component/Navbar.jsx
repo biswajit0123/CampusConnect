@@ -110,12 +110,17 @@ function Navbar() {
 
       {/* toggle sidebar */}
       <div className={`transition  duration-1000 ease-in-out absolute text-black bg-purple-400 ${showBox? "block":"hidden"} sm:hidden top-14 left-0 w-full ${scrolled?'bg-purple-400' : "bg-white"}  `}>
+
          <ul className={`flex gap-1 font-normal flex-col ${scrolled?'text-white' : "text-black"}`}  >
           <li className="p-2  border-b border-gray-400"><Link to="/" onClick={toggle} className="ml-3">Explore</Link></li>
-          <li className="p-2 border-b border-gray-400"><Link to="/q=popular"onClick={toggle} className="ml-3">Popular</Link></li>
-          <li className="p-2 border-b border-gray-400"><Link to="/campuses"onClick={toggle} className="ml-3">Campuses</Link></li>
-          <li className="p-2 border-b border-gray-400"><Link to="/login"onClick={toggle} className="ml-3">Log in</Link></li>
-          <li className="p-2"><Link to="/signup"onClick={toggle} className="ml-3">Sign up</Link></li>
+          <li className="p-2 border-b border-gray-400"><Link to="/campus"onClick={toggle} className="ml-3">Campuses</Link></li>
+           <li className="p-2 border-b border-gray-400"><Link to="/createpost"onClick={toggle} className="ml-3">Create a post +</Link></li>
+          {!isAuth && <li className="p-2 border-b border-gray-400"><Link to="/login"onClick={toggle} className="ml-3">Log in</Link></li>}
+          {!isAuth && <li className="p-2"><Link to="/signup"onClick={toggle} className="ml-3">Sign up</Link></li>}
+          {isAuth && <li className="p-2"><Link to="/"  onClick={() => {
+                toggle();
+                handleLogout(); // second function
+              }}className="ml-3">Log out</Link></li>}
 
          </ul>
       </div>

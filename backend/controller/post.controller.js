@@ -25,17 +25,20 @@ const postControll = {
             return res.status(400).json({message:"fill all the details", success:false})
         }
         const user = req.user;
+        const imageurl = req.file.path;
+
         try {
          
             const post = new Post({
                  title,
                  content,
                  owner:user._id,
-                 collegeName
+                 collegeName,
+                 image: imageurl,
             })
 
             const savedPost = await post.save();
-
+         console.log(savedPost)
             res.status(200).json({message:"post created succesfully", success:true});
 
         } catch (error) {

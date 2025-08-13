@@ -29,8 +29,17 @@ function Post({post , refreshPosts}) {
           <ToastContainer />
           <p><span>@</span><i>{isYou}</i> </p>
           <h5><b>{post.title}</b></h5>
-          <p>{post.content}</p>
+        {post.image && (
+  <div className="w-1/3  ">
+    <img
+      src={post.image}
+      alt=""
+      className="w-full h-52 object-cover"
+    />
+  </div>
+)}
 
+          <p>{post.content}</p>
           <div className='flex gap-4 mt-3 items-center'>
               <Link to={`/${post._id}`} className="text-[0.65rem] font-extralight text-gray-500 relative group">
             view detail <i className="fa-solid fa-arrow-right text-[0.65rem] opacity-0 group-hover:opacity-60"></i>

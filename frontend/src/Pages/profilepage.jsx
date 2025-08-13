@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 function profilepage() {
 
   const user = useSelector((state) => state.user)
+  const gender  = user.gender;
    const [posts, setPosts] = useState([]);
 
 useEffect(() => {
@@ -26,12 +27,17 @@ useEffect(() => {
     <div className='bg-gray-50 p-6 flex flex-col gap-1 items-center'>
    
    <div className='border w-2/3 bg-white flex flex-col items-start p-3'>
-     <img src="https://avatar.iran.liara.run/public/boy" alt="" className='w-14'/>
+
+     <img src={
+      (user?.gender || "").toLowerCase() === "male"
+        ? "https://avatar.iran.liara.run/public/boy"
+        : "https://avatar.iran.liara.run/public/girl"
+    } alt="" className='w-14'/>
       <p>@{user.userName}</p>
       <p>Full Name : {user.fullName}</p>
       <p>Email : {user.email}</p>
       <p>College Name : {user.collgeName}</p>
-      <p>Course : {user.course}</p>
+      <p>Course : {user.course}</p> 
       <p>Branch : {user.branch}</p>
       <p>Country : {user.country}</p>
 
@@ -44,6 +50,9 @@ useEffect(() => {
       className="border w-full rounded-md p-4 mb-4 shadow-sm hover:shadow-md transition-shadow cursor-pointer bg-white"
     >
       <h3 className="text-lg font-semibold text-gray-800">{p.title}</h3>
+      <div>
+        <img src={p.image} alt="" />
+      </div>
       <p className="text-gray-600 text-sm">{p.content || 'No description available'}</p>
       <p className="text-gray-400 text-xs mt-2">
         Posted on: {new Date(p.date || p.createdAt).toLocaleDateString()}

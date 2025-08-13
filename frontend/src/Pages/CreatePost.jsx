@@ -7,9 +7,21 @@ import { useNavigate } from 'react-router-dom';
 
 function CreatePost() {
   const navigate = useNavigate()
+
+   const [image, setImage] = useState(null);
+     const [preview, setPreview] = useState(null); // For preview
+
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    setImage(file);
+    if (file) {
+      setPreview(URL.createObjectURL(file)); // Temporary preview URL
+    }
+  };
   const [postData , setPostData] = useState({
     title:"",
-    content:""
+    content:"",
+
   });
 
   //to change btn collor
@@ -23,9 +35,19 @@ function CreatePost() {
     }
   const handlePost = async (e) =>{
         e.preventDefault();
-   
+        console.log("clicked  ")
         try {
-            const result = await api.post('/post', postData);
+            const formData = new FormData();
+    formData.append("title", postData.title);
+    formData.append("content", postData.content);
+    formData.append("image", image);
+
+            const result = await api.post('/post', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+              });
+
             console.log(result.data.message);
             toast.success(result.data.message)
             setTimeout(() => {
@@ -66,7 +88,29 @@ function CreatePost() {
                   onChange={onchg}
                   /> 
              </div>
-
+            
+            <div className='mb-3'>
+              
+                <label htmlFor="image">Image :</label>
+                <input 
+                  type="file" 
+                  id='image' 
+                  name='image'
+                  accept="image/*"
+                  className='w-full outline-none border-b mt-3'
+                  onChange={handleFileChange}
+                  /> 
+                     {preview && (
+        <div>
+          <p>Image Preview:</p>
+          <img
+            src={preview}
+            alt="Preview"
+            className="w-40 h-40 object-cover rounded-md border"
+          />
+        </div>
+      )}
+             </div>
             <div >
                 <label htmlFor="desc">Description :</label> <br />
                 <input 

@@ -24,7 +24,7 @@ function Comment({ cmt,postId,refreshPostDetail }) {
 
       {/* Comment text */}
       <p className="text-gray-600 text-sm mt-1">{cmt?.content}</p>
-     {  cmt.owner?._id == userId ?  <i class="fa-solid fa-trash absolute right-4 top-4 text-xs cursor-pointer" onClick={deleteComment}></i>:"" }
+     {  cmt.owner?._id == userId ?  <p className=" absolute right-4 top-4 text-xs cursor-pointer" onClick={deleteComment}>remove</p>:"" }
     </div>
   );
 }

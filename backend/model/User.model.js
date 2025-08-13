@@ -1,3 +1,4 @@
+const e = require('express');
 const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema({
@@ -29,6 +30,11 @@ const userSchema = new mongoose.Schema({
     branch:{
         type:String,
         required:true
+    },
+    gender:{
+        type:String,
+        required:true,
+         enum: ["male", "female"]
     },
     country:{
         type:String,

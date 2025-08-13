@@ -69,7 +69,9 @@ const navigate = useNavigate();
       <p className="text-sm text-gray-500 mb-4">
         By <span className="font-medium">@{isYou || "loading"}</span> • {post.createdAt?.split("T")[0]}
       </p>
-
+      <div>
+        <img src={post.image} alt="" />
+      </div>
       {/* Post Content */}
       <div className="text-gray-700 leading-relaxed mb-4">
         {!post.content ? <h5>Loading...</h5> : <p>{post.content}</p>}

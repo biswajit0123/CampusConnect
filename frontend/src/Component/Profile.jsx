@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 function Profile() {
 
   const user = useSelector( (state) => state.user);
-
+  const gender = user.gender;
   return (
     <div className="w-full sm:w-1/4 p-4">
       <div className="bg-white rounded-xl shadow-md overflow-hidden">
@@ -14,7 +14,11 @@ function Profile() {
         <div className="flex ml-5 -mt-8">
           <img
             className="w-20 h-20 rounded-full border-4 border-white object-cover"
-            src="https://avatar.iran.liara.run/public/boy"
+            src={
+      (user?.gender || "").toLowerCase() === "male"
+        ? "https://avatar.iran.liara.run/public/boy"
+        : "https://avatar.iran.liara.run/public/girl"
+    }
             alt="Profile"
           />
         </div>
