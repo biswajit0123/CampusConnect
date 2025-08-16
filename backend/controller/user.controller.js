@@ -75,12 +75,16 @@ module.exports.login = async (req, res) =>{
    {expiresIn:'1h'}
 )
 
-res.cookie('token',token,{
-   httpOnly:true,
-   secure:false,
-   sameSite:'strict',
+res.cookie('token', token, {
+   httpOnly: true,
+   secure: process.env.NODE_ENV === "production", // only true on deploy
+   sameSite: "none",  // allow cross-site
    maxAge: 60 * 60 * 1000
 });
+
+
+
+
     res.status(200).json({message:"loggedin succesfully", success:true,user})
    } catch (error) {
       console.log("error in", error);
@@ -114,11 +118,12 @@ module.exports.logout = (req, res) => {
 //   }
 
 
- res.clearCookie('token', {
-      httpOnly: true,
-      secure: false, // Set to true in production
-      sameSite: 'strict'
-    });
+    res.clearCookie("token", {
+   httpOnly: true,
+   secure: process.env.NODE_ENV === "production",
+   sameSite: "none",
+});
+
 
     return res.status(200).json({ message: "Logged out successfully" });
 };
