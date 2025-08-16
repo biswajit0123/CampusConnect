@@ -7,7 +7,7 @@ function main(){
     mongoose.connect(connectionString);
     console.log("database connected succesfully");
    } catch (error) {
- console.log("error occured ", error);    
+ console.log("error occured  in database connection ");    
    }
 }
 

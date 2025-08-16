@@ -8,7 +8,6 @@ const postControll = {
         //  return res.status(400).json({message:"sry bby"})
         try {
             const posts = await Post.find({}).populate('owner');
-            console.log(posts);
             res.status(200).json({posts});
         } catch (error) {
             console.log("error is ", error);
@@ -41,7 +40,6 @@ const postControll = {
             })
 
             const savedPost = await post.save();
-         console.log(savedPost)
             res.status(200).json({message:"post created succesfully", success:true});
 
         } catch (error) {

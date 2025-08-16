@@ -29,7 +29,7 @@ app.use(cors({
 app.get('/test', (req, res)=>{
 res.status(201).json({msg:"ok"});
 })
-
-app.listen(port, () => {
+const PORT = process.env.PORT || 4000;
+app.listen(PORT, () => {
     console.log("Server is listening at http://localhost:3000");
 });
