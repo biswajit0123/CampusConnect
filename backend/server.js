@@ -15,10 +15,16 @@ const campusRoute = require('./router/campus.route.js')
 main();
 app.use(express.json())
 app.use(cookieParser());
+const allowedOrigins = [
+  'http://localhost:5173',
+  'https://campusconnect-endu.onrender.com'
+];
+
 app.use(cors({
-    origin:'https://campusconnect-frontend-h28z.onrender.com', 
-    credentials:true
+  origin: allowedOrigins,
+  credentials: true
 }));
+
 
     app.use('/auth',userRoute);
     app.use('/post',postRoute);
