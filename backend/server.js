@@ -16,7 +16,7 @@ main();
 app.use(express.json())
 app.use(cookieParser());
 const allowedOrigins = [
-  'http://localhost:5173',
+  // 'http://localhost:5173',
   'https://campusconnect-endu.onrender.com'
 ];
 
@@ -37,5 +37,5 @@ res.status(201).json({msg:"ok"});
 })
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
-    console.log("Server is listening at http://localhost:3000");
+    console.log("Server is listening at", PORT);
 });

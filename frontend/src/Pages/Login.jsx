@@ -21,12 +21,14 @@ const Login = () => {
     try {
       const response = await api.post('/auth/login', formData);
       toast.success(response.data.message);
+      console.log(response.data);
       const user = response.data.user;
       dispatch(setUser(user));
       setTimeout(() => {
         navigate('/');
       }, 1000);
     } catch (error) {
+      console.error("Login error:", error);
       toast.error(error.response?.data?.message || "Login failed");
     }
   };
