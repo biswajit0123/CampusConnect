@@ -16,7 +16,7 @@ main();
 app.use(express.json())
 app.use(cookieParser());
 app.use(cors({
-    origin:'http://localhost:5173', 
+    origin:'https://campusconnect-frontend-h28z.onrender.com', 
     credentials:true
 }));
 
