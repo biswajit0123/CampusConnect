@@ -50,7 +50,7 @@ const Login = () => {
                 <label htmlFor="email" className='text-xs block mb-1'>Email:</label>
                 <input
                   id='email'
-                  type="text"
+                  type="email"
                   placeholder='biswajitmuduli0544@gmail.com'
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}

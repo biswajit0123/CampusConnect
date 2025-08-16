@@ -40,14 +40,15 @@ function CreatePost() {
             const formData = new FormData();
     formData.append("title", postData.title);
     formData.append("content", postData.content);
+            if (image) {
     formData.append("image", image);
+            }
 
             const result = await api.post('/post', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
               });
-
             console.log(result.data.message);
             toast.success(result.data.message)
             setTimeout(() => {
@@ -55,7 +56,7 @@ function CreatePost() {
             },700);
         } catch (error) {
           toast.error(error.response.data.message)
-          console.log(error.response.data.message)
+          console.log(error.response.data)
         }
      
       }

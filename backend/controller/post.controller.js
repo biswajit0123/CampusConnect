@@ -25,7 +25,10 @@ const postControll = {
             return res.status(400).json({message:"fill all the details", success:false})
         }
         const user = req.user;
-        const imageurl = req.file.path;
+        const imageurl ="";
+        if(req.file){
+            imageurl = req.file.path; // Assuming the file path is stored in req.file.path
+        }
 
         try {
          

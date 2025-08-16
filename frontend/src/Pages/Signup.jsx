@@ -36,6 +36,9 @@ const Signup = () => {
       return toast.error("Password must contain at least one special character");
     }
 
+if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+  return toast.error("Please enter a valid email address");
+}
 
     const formData = {
       fullName,
@@ -125,7 +128,7 @@ const [filteredSuggestions, setFilteredSuggestions] = useState([]);
               <label htmlFor="email" className='text-xs'>Email:</label>
               <input
                 id='email'
-                type="text"
+                type="email"
                 placeholder='biswajitmuduli0544@gmail.com'
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
