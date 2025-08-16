@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-    baseURL:'http://localhost:3000/',
+    baseURL:'https://campusconnect-backend-xz5q.onrender.com',
     withCredentials:true,
       headers: {
     "Content-Type": "application/json",
