@@ -78,7 +78,7 @@ module.exports.login = async (req, res) =>{
 res.cookie('token', token, {
    httpOnly: true,
    secure: process.env.NODE_ENV === "production", // only true on deploy
-   sameSite: "none",  // allow cross-site
+   sameSite:process.env.NODE_ENV === "production"? "none" : "lax",  // allow cross-site
    maxAge: 60 * 60 * 1000
 });
 
