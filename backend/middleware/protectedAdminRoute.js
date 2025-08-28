@@ -7,7 +7,7 @@ const protectedAdminRoute = async (req, res, next) => {
     
     // No token found
     if (!token) {
-      return res.status(401).json({ message: "Unauthorized", success: false });
+      return res.status(401).json({ message: "Unauthorized Access", success: false });
     }
 
     // Verify token
