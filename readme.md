@@ -1,3 +1,4 @@
+⚠️ **Important:** You need to allow **third-party cookies** before visiting the site, otherwise it may not work properly.  
 
 👉 **Live Demo:** [CampusConnect ->](https://campusconnect-endu.onrender.com)
 👉 **GitHub Repository:** [CampusConnect Repo](https://github.com/biswajit0123/CampusConnect.git)
